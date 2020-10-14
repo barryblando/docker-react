@@ -13,6 +13,7 @@ RUN npm run build
 
 FROM nginx:alpine
 
+# Copy files from builder /app/build to nginx folder 
 COPY --from=builder /app/build /usr/share/nginx/html
 
 # no start command, nginx will automatically start once build completes
