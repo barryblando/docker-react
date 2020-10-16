@@ -8,3 +8,17 @@ before_install: # do initial command
 
 script:
   - docker run -e CI=true barryblando/docker-react npm run test -- --coverage
+
+# automatically deploy app if all stages are successful
+deploy:
+  provider: elasticbeanstalk # AWS EBS
+  region: "ap-southeast-1" # env url region
+  app: "docker"
+  env: "Docker-env"
+  bucket_name: "elasticbeanstalk-ap-southeast-1-861914459334"
+  bucket_path: "docker"
+  on:
+    branch: main # deploy only when a feature branch merges w/ main branch
+  # travis-ci repo env
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
