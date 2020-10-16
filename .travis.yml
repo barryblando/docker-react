@@ -1,5 +1,5 @@
-language: generic
 sudo: required
+language: generic
 services:
   - docker # install ready-to-go docker-cli in travis env
 
@@ -7,7 +7,7 @@ before_install: # do initial command
   - docker build -t barryblando/docker-react -f Dockerfile.dev .
 
 script:
-  - docker run -e CI=true barryblando/docker-react npm run test -- --coverage
+  - docker run -e CI=true barryblando/docker-react npm test -- --coverage
 
 # automatically deploy app if all stages are successful
 deploy:
