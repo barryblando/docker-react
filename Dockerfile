@@ -13,6 +13,8 @@ RUN npm run build
 
 FROM nginx:alpine
 
+EXPOSE 80
+
 # Copy files from builder /app/build to nginx folder 
 COPY --from=builder /app/build /usr/share/nginx/html
 
